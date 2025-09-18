@@ -9,4 +9,4 @@ for x in range(n):
         t += 1
     elif b == 'False':
         f += 1
-print(t, f)
+print(t,f)

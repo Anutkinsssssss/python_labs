@@ -23,4 +23,3 @@ while i < len(a):
         break
     i += step
 print(''.join(ans))
-
