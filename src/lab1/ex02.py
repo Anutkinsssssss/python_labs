@@ -1,5 +1,4 @@
 import math
-
 a1 = input()
 a2 = input()
 a1 = a1.replace(',', '.')
