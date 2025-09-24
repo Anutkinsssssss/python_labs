@@ -10,3 +10,6 @@ for x in range(n):
     elif b == 'False':
         f += 1
 print(t, f)
+
+
+
