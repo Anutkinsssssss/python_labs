@@ -188,7 +188,7 @@ def col_sums(mat):
 def format_record(tuptup):
     otvetik = ''
     if type(tuptup) != tuple:
-        tuptup = tuple(tuptup)
+        raise TypeError
     if len(tuptup) == 3:
         fio = tuptup[0]
         gruppochka = tuptup[1]
