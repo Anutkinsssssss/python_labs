@@ -21,7 +21,8 @@ def format_record(tuptup):
                 return otvetik
             else:
                 raise ValueError
-
+        else:
+            raise ValueError
 tuptup = ("Иванов Иван Иванович", "BIVT-25", 4.6)
 print(format_record(tuptup))
 tuptup = ("Петров Пётр", "IKBO-12", 5.0)
