@@ -99,3 +99,115 @@ while i < len(a):
 print(''.join(ans))
 ```
 ![Задание со звёздочкой](/images/lab1/img_7.png)
+
+# Лабораторная работа №2
+Задача 1
+```py
+def min_max(nums):
+    if len(nums) == 0:
+        raise ValueError
+    minimumchik = min(nums)
+    maxichek = max(nums)
+    return (minimumchik, maxichek)
+```
+![Первая](/images/lab2/ex1.png)
+
+Задача 2
+```py
+def unique_sorted(nums):
+    otvetik = sorted(set(nums))
+    return otvetik
+```
+![Первая](/images/lab2/ex2.png)
+
+Задача 3
+```py
+def flatten(nums):
+    otvetik = []
+    for e in nums:
+        if type(e) == list or type(e) == tuple:
+            for i in range(len(e)):
+                if e[i] != '':
+                    otvetik.append(e[i])
+        else:
+            raise TypeError
+    return otvetik
+```
+![Первая](/images/lab2/ex3.png)
+
+Задача 4
+```py
+def transpose(mat):
+    new_mat = []
+    if len(mat) == 0:
+        return []
+    kol_simv = len(mat[0])
+    for elem in mat:
+        if len(elem) != kol_simv:
+            raise ValueError
+    for stolbik in range(kol_simv):
+        new_strochechka = []
+        for strochechka in range(len(mat)):
+            new_strochechka.append(mat[strochechka][stolbik])
+        new_mat.append(new_strochechka)
+    return new_mat
+```
+![Первая](/images/lab2/ex4.png)
+
+Задача 5
+```py
+def row_sums(mat):
+    kol_simv = len(mat[0])
+    for elem in mat:
+        if len(elem) != kol_simv:
+            raise ValueError
+    otvetik = []
+    for elem in mat:
+        otvetik.append(sum(elem))
+    return otvetik
+```
+![Первая](/images/lab2/ex5.png)
+
+Задача 6
+```py
+def col_sums(mat):
+    kol_simv = len(mat[0])
+    for elem in mat:
+        if len(elem) != kol_simv:
+            raise ValueError
+    otvetik = [0] * len(mat[0])
+    for strochechka in mat:
+        for stolbik in range(len(strochechka)):
+            otvetik[stolbik] = otvetik[stolbik] + strochechka[stolbik]
+    return otvetik
+```
+![Первая](/images/lab2/ex6.png)
+
+Задача 7
+```py
+def format_record(tuptup):
+    otvetik = ''
+    if type(tuptup) == tuple:
+        if len(tuptup) == 3:
+            fio = tuptup[0]
+            gruppochka = tuptup[1]
+            gpa = tuptup[2]
+            if type(fio) == str and type(gruppochka) == str and type(gpa) == float and len(fio.split()) >= 2:
+                fio = fio.split()
+                if len(fio) == 2:
+                    fam = fio[0].capitalize()
+                    name = fio[1].capitalize()
+                    new_fio = f'{fam} {name[0]}.,'
+                if len(fio) == 3:
+                    fam = fio[0].capitalize()
+                    name = fio[1].capitalize()
+                    otch = fio[2].capitalize()
+                    new_fio = f'{fam} {name[0]}.{otch[0]}.,'
+                new_gruppochka = f'гр. {gruppochka},'
+                otvetik = f'{new_fio} {new_gruppochka} {gpa:.2f}'
+                return otvetik
+            else:
+                raise ValueError
+
+```
+![Первая](/images/lab2/ex7.png)

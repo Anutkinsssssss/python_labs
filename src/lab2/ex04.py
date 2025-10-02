@@ -15,3 +15,11 @@ def transpose(mat):
 
 mat = [[1, 2, 3]]
 print(transpose(mat))
+mat = [[1], [2], [3]]
+print(transpose(mat))
+mat = [[1, 2], [3, 4]]
+print(transpose(mat))
+mat = []
+print(transpose(mat))
+mat = [[1, 2], [3]]
+print(transpose(mat))

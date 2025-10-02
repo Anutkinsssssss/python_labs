@@ -24,3 +24,9 @@ def format_record(tuptup):
 
 tuptup = ("Иванов Иван Иванович", "BIVT-25", 4.6)
 print(format_record(tuptup))
+tuptup = ("Петров Пётр", "IKBO-12", 5.0)
+print(format_record(tuptup))
+tuptup = ("Петров Пётр Петрович", "IKBO-12", 5.0)
+print(format_record(tuptup))
+tuptup = ("  сидорова  анна   сергеевна ", "ABB-01", 3.999)
+print(format_record(tuptup))

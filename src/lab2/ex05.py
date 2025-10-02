@@ -10,3 +10,9 @@ def row_sums(mat):
 
 mat = [[1, 2, 3], [4, 5, 6]]
 print(row_sums(mat))
+mat = [[-1, 1], [10, -10]]
+print(row_sums(mat))
+mat = [[0, 0], [0, 0]]
+print(row_sums(mat))
+mat = [[1, 2], [3]]
+print(row_sums(mat))
