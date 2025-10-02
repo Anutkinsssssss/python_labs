@@ -208,6 +208,8 @@ def format_record(tuptup):
                 return otvetik
             else:
                 raise ValueError
+        else:
+            raise ValueError
 
 ```
 ![Первая](/images/lab2/ex7.png)
