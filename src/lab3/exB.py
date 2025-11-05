@@ -37,6 +37,5 @@ count = count_freq(token)
 print("Уникальных слов:", len(count))
 top = top_n(count)
 print("Топ-5:")
-print(top)
 for element in top:
     print(str(element[0]) + ":" + str(element[1]))
