@@ -281,8 +281,6 @@ for array in tests:
 import sys
 import re
 
-sys.path.append('D:\python_labs\src')
-
 def normalize(text, *, casefold = True, yo2e = True):
     text = re.sub(r"[\t\r\n\f\v]", " ", text)
     if yo2e:
@@ -310,7 +308,7 @@ def top_n(freq, n = 2):
     sorted_items = sorted(freq.items(), key=lambda x: (-x[1], x[0]))
     return sorted_items[:n]
 
-
+sys.stdin.reconfigure(encoding='utf-8')
 a = sys.stdin.read().strip()
 norm = normalize(a)
 token = tokenize(norm)
@@ -319,11 +317,10 @@ count = count_freq(token)
 print("Уникальных слов:", len(count))
 top = top_n(count)
 print("Топ-5:")
-
 for element in top:
     print(str(element[0]) + ":" + str(element[1]))
 ```
-![B](/images/lab3/exB.png)
+![B](/images/lab3/lab3_exB1.png)
 
 
 # Лабораторная работа №4
