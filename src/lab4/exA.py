@@ -1,14 +1,14 @@
 from pathlib import Path
 import csv
-import sys
-sys.path.append(r'C:\Users\ameze\Desktop\python_labs\src')
+# import sys
+# sys.path.append(r'C:\Users\ameze\Desktop\python_labs\src')
 def read_text(path, encoding ='utf-8'):
     path = Path(path)
     with open(path, 'r', encoding=encoding) as f:
         return f.read()
 
 try:
-    text = read_text('data/lab4/input.txt', encoding='utf-8')
+    text = read_text(r'C:\Users\ameze\Desktop\python_labs\src\data\lab4\input.txt', encoding='utf-8')
     print(text)
 except FileNotFoundError:
     print('Файл не найден')
@@ -30,4 +30,4 @@ def write_csv(rows, path, header):
         for row in rows:
             csv_maker.writerow(row)
 
-write_csv([("word","count"),("test",3)], 'data/lab4/check.csv', None)
+write_csv([("word","count"),("test",3)], r'C:\Users\ameze\Desktop\python_labs\src\data\lab4\check.csv', None)

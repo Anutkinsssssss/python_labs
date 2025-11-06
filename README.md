@@ -324,3 +324,93 @@ for element in top:
     print(str(element[0]) + ":" + str(element[1]))
 ```
 ![B](/images/lab3/exB.png)
+
+
+# Лабораторная работа №4
+
+Задание А
+```py
+from pathlib import Path
+import csv
+# import sys
+# sys.path.append(r'C:\Users\ameze\Desktop\python_labs\src')
+def read_text(path, encoding ='utf-8'):
+    path = Path(path)
+    with open(path, 'r', encoding=encoding) as f:
+        return f.read()
+
+try:
+    text = read_text(r'C:\Users\ameze\Desktop\python_labs\src\data\lab4\input.txt', encoding='utf-8')
+    print(text)
+except FileNotFoundError:
+    print('Файл не найден')
+except UnicodeDecodeError:
+    print('Неподходящая кодировка')
+
+
+def write_csv(rows, path, header):
+    path = Path(path)
+    if rows:
+        last_dlina = len(rows[-1])
+        for row in rows:
+            if len(row) != last_dlina:
+                raise ValueError
+    with open(path, 'w', newline='', encoding='utf-8') as f:
+        csv_maker = csv.writer(f, delimiter=',')
+        if header:
+            csv_maker.writerow(header)
+        for row in rows:
+            csv_maker.writerow(row)
+
+write_csv([("word","count"),("test",3)], r'C:\Users\ameze\Desktop\python_labs\src\data\lab4\check.csv', None)
+```
+![A](images/lab4/lab4_exA1.png)
+![A](images/lab4/lab4_exA2.png)
+
+Задание В
+```py
+from pathlib import Path
+import csv
+import sys
+sys.path.append(r'C:\Users\ameze\Desktop\python_labs\src')
+
+
+
+from lib.normalize import normalize
+from lib.tokenize import tokenize
+from lib.count_freq_top_n_function import count_freq, top_n
+
+
+def read_text(path, encoding='utf-8'):
+    path = Path(path)
+    with open(path, 'r', encoding='utf-8') as f:
+        return f.read()
+
+def report_writer(path, count_f, encoding='utf-8'):
+    path = Path(path)
+    sortirovka = top_n(count_f, len(count_f))
+    with open(path, 'w', newline='', encoding='utf-8') as f:
+        csv_maker = csv.writer(f, delimiter=',')
+        csv_maker.writerow(('word', 'count'))
+        for word, freq in sortirovka:
+            csv_maker.writerow((word, freq))
+
+try:
+    text_i = read_text(r'C:\Users\ameze\Desktop\python_labs\src\data\lab4\input.txt', encoding='utf-8')
+    norm = normalize(text_i)
+    token = tokenize(norm)
+    count_f = count_freq(token)
+    top = top_n(count_f, 5)
+
+    report_writer(r'C:\Users\ameze\Desktop\python_labs\src\data\lab4\report.csv', count_f, encoding='utf-8')
+    print('Всего слов:', len(token))
+    print('Уникальных слов:', len(count_f))
+    for t in top:
+        print(t[0], ':', t[1])
+except FileNotFoundError:
+    print('Файл не найден')
+except UnicodeDecodeError:
+    print('Неподходящая кодировка')
+```
+![B](images/lab4/lab4_exB1.png)
+![B](images/lab4/lab4_exB2.png)

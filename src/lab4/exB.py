@@ -4,6 +4,7 @@ import sys
 sys.path.append(r'C:\Users\ameze\Desktop\python_labs\src')
 
 
+
 from lib.normalize import normalize
 from lib.tokenize import tokenize
 from lib.count_freq_top_n_function import count_freq, top_n
@@ -24,13 +25,13 @@ def report_writer(path, count_f, encoding='utf-8'):
             csv_maker.writerow((word, freq))
 
 try:
-    text_i = read_text('src/data/lab4/input.txt', encoding='utf-8')
+    text_i = read_text(r'C:\Users\ameze\Desktop\python_labs\src\data\lab4\input.txt', encoding='utf-8')
     norm = normalize(text_i)
     token = tokenize(norm)
     count_f = count_freq(token)
     top = top_n(count_f, 5)
 
-    report_writer('srс/data/lab4/report.csv', count_f, encoding='utf-8')
+    report_writer(r'C:\Users\ameze\Desktop\python_labs\src\data\lab4\report.csv', count_f, encoding='utf-8')
     print('Всего слов:', len(token))
     print('Уникальных слов:', len(count_f))
     for t in top:
