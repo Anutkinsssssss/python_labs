@@ -326,18 +326,22 @@ for element in top:
 # Лабораторная работа №4
 
 Задание А
+
 ```py
 from pathlib import Path
 import csv
+
+
 # import sys
 # sys.path.append(r'C:\Users\ameze\Desktop\python_labs\src')
-def read_text(path, encoding ='utf-8'):
+def read_text(path, encoding='utf-8'):
     path = Path(path)
     with open(path, 'r', encoding=encoding) as f:
         return f.read()
 
+
 try:
-    text = read_text(r'C:\Users\ameze\Desktop\python_labs\src\data\lab4\input.txt', encoding='utf-8')
+    text = read_text(r'src/data/lab4/input.txt', encoding='utf-8')
     print(text)
 except FileNotFoundError:
     print('Файл не найден')
@@ -359,19 +363,20 @@ def write_csv(rows, path, header):
         for row in rows:
             csv_maker.writerow(row)
 
-write_csv([("word","count"),("test",3)], r'C:\Users\ameze\Desktop\python_labs\src\data\lab4\check.csv', None)
+
+write_csv([("word", "count"), ("test", 3)], r'src/data/lab4/check.csv', None)
 ```
 ![A](images/lab4/lab4_exA1.png)
 ![A](images/lab4/lab4_exA2.png)
 
 Задание В
+
 ```py
 from pathlib import Path
 import csv
 import sys
+
 sys.path.append(r'C:\Users\ameze\Desktop\python_labs\src')
-
-
 
 from lib.normalize import normalize
 from lib.tokenize import tokenize
@@ -383,6 +388,7 @@ def read_text(path, encoding='utf-8'):
     with open(path, 'r', encoding='utf-8') as f:
         return f.read()
 
+
 def report_writer(path, count_f, encoding='utf-8'):
     path = Path(path)
     sortirovka = top_n(count_f, len(count_f))
@@ -392,14 +398,15 @@ def report_writer(path, count_f, encoding='utf-8'):
         for word, freq in sortirovka:
             csv_maker.writerow((word, freq))
 
+
 try:
-    text_i = read_text(r'C:\Users\ameze\Desktop\python_labs\src\data\lab4\input.txt', encoding='utf-8')
+    text_i = read_text(r'src/data/lab4/input.txt', encoding='utf-8')
     norm = normalize(text_i)
     token = tokenize(norm)
     count_f = count_freq(token)
     top = top_n(count_f, 5)
 
-    report_writer(r'C:\Users\ameze\Desktop\python_labs\src\data\lab4\report.csv', count_f, encoding='utf-8')
+    report_writer(r'src/data/lab4/report.csv', count_f, encoding='utf-8')
     print('Всего слов:', len(token))
     print('Уникальных слов:', len(count_f))
     for t in top:
@@ -411,3 +418,131 @@ except UnicodeDecodeError:
 ```
 ![B](images/lab4/lab4_exB1.png)
 ![B](images/lab4/lab4_exB2.png)
+
+# Лабораторная работа №5
+ Задание A
+ ```py
+ import json
+import csv
+from pathlib import Path
+
+
+
+def json_to_csv(json_path: str, csv_path: str) -> None:
+    jp = Path(json_path)
+    if jp.suffix != ".json":
+        raise ValueError("Неверный тип файла")
+    if not jp.exists():
+        raise FileNotFoundError("Файл не найден")
+
+    with open(json_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    if len(data) == 0:
+        raise ValueError("Пустой JSON")
+
+    all_headers = set()
+    for item in data:
+        if not isinstance(item, dict):
+            raise ValueError("Элементы JSON должны быть словарями")
+        all_headers.update(item.keys())
+
+    headers = sorted(all_headers)
+
+    with open(csv_path, "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=headers)
+        writer.writeheader()
+
+
+        for item in data:
+            row = {}
+            for header in headers:
+                row[header] = item.get(header, '')
+            writer.writerow(row)
+
+
+def csv_to_json(csv_path: str, json_path: str) -> None:
+    cp = Path(csv_path)
+    if cp.suffix != ".csv":
+        raise ValueError("Неверный тип файла")
+    if not cp.exists():
+        raise FileNotFoundError("Файл не найден")
+
+    with open(csv_path, "r", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        rows = list(reader)
+
+    if len(rows) == 0:
+        raise ValueError("Пустой CSV")
+
+    with open(json_path, "w", encoding="utf-8") as f:
+        json.dump(rows, f, ensure_ascii=False, indent=2)
+
+
+json_to_csv("../data/samples/people.json", "../data/out/people_from_json.csv")
+csv_to_json("../data/samples/people.csv", "../data/out/people_from_csv.json")
+```
+![A](images/lab5/exA1.1.png)
+![A](images/lab5/exA12.png)
+![A](images/lab5/exA13.png)
+![A](images/lab5/exA14.png)
+Задание B
+```py
+import csv
+from pathlib import Path
+import openpyxl
+from openpyxl import Workbook
+from openpyxl.utils import get_column_letter
+
+def csv_to_xlsx(csv_path: str, xlsx_path: str) -> None:
+    csv_file = Path(csv_path)
+    if not csv_file.exists():
+        raise FileNotFoundError("Файл не найден")
+    if csv_file.suffix != '.csv':
+        raise ValueError("Неверный тип файла")
+
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "Sheet1"
+
+    with open(csv_path, 'r', encoding='utf-8') as f:
+        reader = csv.DictReader(f)
+        rows = list(reader)
+    if len(rows) == 0:
+        raise ValueError("Файл не содержит данных")
+    if not reader.fieldnames:
+        raise ValueError("Файл не содержит заголовка")
+
+    ws.append(reader.fieldnames)
+
+    r_count = 0
+    for row in rows:
+        r_count += 1
+        data_for_ex = []
+        for title in reader.fieldnames:
+            data_for_ex.append(row[title])
+        ws.append(data_for_ex)
+    if r_count == 0:
+        raise ValueError("Нет данных")
+
+    for col_index in range(1,len(reader.fieldnames)+1):
+        column_letter = get_column_letter(col_index)
+        max_len = 0
+        for row in ws[column_letter]:
+            if row.value is not None:
+                max_len = max(max_len, len(str(row.value)))
+
+        m_width = max(max_len+2, 8)
+        ws.column_dimensions[column_letter].width = m_width
+
+    xlsx_path = Path(xlsx_path)
+    wb.save(xlsx_path)
+
+
+csv_to_xlsx("../data/samples/people.csv", "../data/out/people.xlsx")
+csv_to_xlsx("../data/samples/cities.csv", "../data/out/cities.xlsx")
+```
+![B](images/lab5/exB11.png)
+![B](images/lab5/exB12.png)
+![B](images/lab5/exB13.png)
+![B](images/lab5/exB14.png)
