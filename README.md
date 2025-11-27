@@ -1,6 +1,7 @@
 # Лабораторная работа №1
 
 Задача 1
+
 ```py
 name = input()
 age = int(input())
@@ -9,6 +10,7 @@ print(f'Привет, {name}! Через год тебе будет {age + 1}.')
 ![Привет и возраст](./images/lab1/img_1.png)
 
 Задача 2
+
 ```py
 import math
 a1 = input()
@@ -24,6 +26,7 @@ print(f'sum={sum}; avg={round(avg, 2)}')
 ![Сумма и среднее](/images/lab1/img_2.png)
 
 Задача 3
+
 ```py
 price = float(input())
 discount = float(input())
@@ -38,6 +41,7 @@ print(f'Итого к оплате:    {total:.2f}')
 ![Чек: скидка и НДС](/images/lab1/img_3.png)
 
 Задача 4
+
 ```py
 m = int(input())
 ch = m // 60
@@ -46,6 +50,7 @@ print(f'{ch}:{m - ch * 60}')
 ![Минуты -> ЧЧ:ММ](/images/lab1/img_4.png)
 
 Задача 5
+
 ```py
 fio = input().split()
 print(f'Инициалы: {fio[0][0] + fio[1][0] + fio[2][0]}.')
