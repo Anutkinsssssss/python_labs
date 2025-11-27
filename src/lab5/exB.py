@@ -35,7 +35,7 @@ def csv_to_xlsx(csv_path: str, xlsx_path: str) -> None:
     if r_count == 0:
         raise ValueError("Нет данных")
 
-    for col_index in range(1,len(reader.fieldnames)+1):
+    for col_index in range(1, len(reader.fieldnames)+1):
         column_letter = get_column_letter(col_index)
         max_len = 0
         for row in ws[column_letter]:
@@ -49,5 +49,5 @@ def csv_to_xlsx(csv_path: str, xlsx_path: str) -> None:
     wb.save(xlsx_path)
 
 
-csv_to_xlsx("../data/samples/people.csv", "../data/out/people.xlsx")
-csv_to_xlsx("../data/samples/cities.csv", "../data/out/cities.xlsx")
+csv_to_xlsx("src/data/samples/people.csv", "src/data/out/people.xlsx")
+csv_to_xlsx("src/data/samples/cities.csv", "src/data/out/cities.xlsx")
