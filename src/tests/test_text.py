@@ -43,7 +43,6 @@ def test_top_tie_breaker():
 
 
 def test_dop():
-    """Тесты для пустых входных данных"""
     assert normalize("") == ""
     assert tokenize("") == []
     assert count_freq([]) == {}
@@ -51,6 +50,5 @@ def test_dop():
 
 
 def test_top_dop():
-    """Запрос большего N чем есть элементов"""
     freq = {"a": 3, "b": 2}
     assert top_n(freq, 5) == [("a", 3), ("b", 2)]

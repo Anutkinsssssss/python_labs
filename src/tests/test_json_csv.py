@@ -1,7 +1,7 @@
 import json, csv
 from pathlib import Path
 import pytest
-from src.lab5.exA import json_to_csv, csv_to_json
+from src.lib.convert import json_to_csv, csv_to_json
 
 
 def write_json(path: Path, obj):
@@ -37,47 +37,35 @@ def test_csv_to_json_roundtrip(tmp_path: Path):
 
 
 def test_json_to_csv_empty(tmp_path: Path):
-    """Тест для пустого JSON - ожидаем что функция обработает это корректно"""
     src = tmp_path / "empty.json"
     dst = tmp_path / "empty.csv"
     src.write_text("[]", encoding="utf-8")
 
     try:
         json_to_csv(str(src), str(dst))
-        # Если функция выполнилась без ошибки, проверяем результат
         if dst.exists():
-            # Файл создан - тест пройден
             pass
     except (ValueError, IndexError):
-        # Если функция бросила ожидаемое исключение - это тоже нормально
         pass
 
 
 def test_csv_to_json_empty(tmp_path: Path):
-    """Тест для пустого CSV - ожидаем что функция обработает это корректно"""
     src = tmp_path / "empty.csv"
     dst = tmp_path / "empty.json"
     src.write_text("", encoding="utf-8")
 
     try:
         csv_to_json(str(src), str(dst))
-        # Если функция выполнилась без ошибки, проверяем результат
         if dst.exists():
-            # Файл создан - тест пройден
             pass
     except (ValueError, Exception):
-        # Если функция бросила исключение - это тоже нормально
         pass
 
 
 def test_missing_file(tmp_path: Path):
-    """Тест для несуществующего файла"""
     try:
         csv_to_json("nope.csv", str(tmp_path / "out.json"))
-        # Если функция выполнилась, проверяем результат
         if (tmp_path / "out.json").exists():
-            # Файл создан - тест пройден
             pass
     except FileNotFoundError:
-        # Если бросило FileNotFoundError - тест пройден
         pass
