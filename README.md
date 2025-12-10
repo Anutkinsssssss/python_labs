@@ -794,3 +794,225 @@ def test_missing_file(tmp_path: Path):
         pass
 ```
 ![B](images/lab7/lab7_B.png)
+
+# Лабораторная работа №8
+
+models.py
+```py
+from dataclasses import dataclass
+from datetime import datetime, date
+import re
+
+
+@dataclass
+class Student:
+    fio: str
+    birthdate: str
+    group: str
+    gpa: float
+
+    def __post_init__(self):
+        """Валидация данных после инициализации"""
+        # Валидация формата даты
+        try:
+            datetime.strptime(self.birthdate, "%Y-%m-%d")
+        except ValueError:
+            raise ValueError("Дата должна быть в формате YYYY-MM-DD")
+
+        # Валидация GPA
+        if not (0 <= self.gpa <= 5):
+            raise ValueError("GPA должен быть в диапазоне от 0 до 5")
+
+        # Валидация ФИО (должно содержать только буквы и пробелы)
+        if not re.match(r'^[A-Za-zА-Яа-яЁё\s]+$', self.fio):
+            raise ValueError("ФИО должно содержать только буквы и пробелы")
+
+    def age(self) -> int:
+        """Возвращает количество полных лет студента"""
+        birth_date = datetime.strptime(self.birthdate, "%Y-%m-%d").date()
+        today = date.today()
+
+        age = today.year - birth_date.year
+
+        # Проверяем, был ли уже день рождения в этом году
+        if today.month < birth_date.month or (today.month == birth_date.month and today.day < birth_date.day):
+            age -= 1
+
+        return age
+
+    def to_dict(self) -> dict:
+        """Сериализация объекта в словарь"""
+        return {
+            "fio": self.fio,
+            "birthdate": self.birthdate,
+            "group": self.group,
+            "gpa": self.gpa
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict):
+        """Десериализация объекта из словаря"""
+        return cls(
+            fio=data["fio"],
+            birthdate=data["birthdate"],
+            group=data["group"],
+            gpa=data["gpa"]
+        )
+
+    def __str__(self) -> str:
+        """Строковое представление объекта"""
+        return f"{self.fio}, группа {self.group}, возраст {self.age()}, GPA: {self.gpa}"
+
+    def is_excellent(self) -> bool:
+        """Дополнительный метод: проверяет, является ли студент отличником"""
+        return self.gpa >= 4.5
+```
+serialize.py
+```py
+import json
+from typing import List
+from src.lab8.models import Student
+
+
+def students_to_json(students: List[Student], path: str) -> None:
+    """
+    Сохраняет список студентов в JSON файл
+
+    Args:
+        students: список объектов Student
+        path: путь к файлу для сохранения
+    """
+    data = [student.to_dict() for student in students]
+
+    with open(path, 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+
+
+def students_from_json(path: str) -> List[Student]:
+    """
+    Читает JSON файл и создает список объектов Student
+
+    Args:
+        path: путь к JSON файлу
+
+    Returns:
+        List[Student]: список объектов Student
+    """
+    try:
+        with open(path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        students = []
+        for item in data:
+            try:
+                student = Student.from_dict(item)
+                students.append(student)
+            except (ValueError, KeyError) as e:
+                print(f"Ошибка при создании студента из данных: {item}. Ошибка: {e}")
+                continue
+
+        return students
+
+    except FileNotFoundError:
+        print(f"Файл {path} не найден")
+        return []
+    except json.JSONDecodeError:
+        print(f"Ошибка декодирования JSON в файле {path}")
+        return []
+```
+
+tests_ex.py
+```py
+import sys
+import os
+
+# Добавляем путь к src для импорта модулей
+sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
+
+from src.lab8.models import Student
+from src.lab8.serialize import students_to_json, students_from_json
+
+
+def main():
+    print("=== Лабораторная работа 8 - Демонстрация ===")
+    print()
+
+    # 1. Демонстрация создания объектов
+    print("1. Создание объектов Student:")
+    print("-" * 40)
+
+    student1 = Student("Иванов Иван Иванович", "2000-05-15", "SE-01", 4.7)
+    student2 = Student("Петрова Анна Сергеевна", "2001-08-22", "SE-02", 3.8)
+    student3 = Student("Сидоров Алексей Петрович", "1999-12-10", "SE-01", 4.2)
+
+    print("Созданные студенты:")
+    print(f"  • {student1}")
+    print(f"  • {student2}")
+    print(f"  • {student3}")
+    print()
+
+    # 2. Демонстрация методов
+    print("2. Демонстрация методов:")
+    print("-" * 40)
+
+    print(f"Студент {student1.fio.split()[1]} является отличником: {student1.is_excellent()}")
+    print(f"Студент {student2.fio.split()[1]} является отличником: {student2.is_excellent()}")
+    print()
+
+    # 3. Сериализация в JSON
+    print("3. Сериализация в JSON:")
+    print("-" * 40)
+
+    students_list = [student1, student2, student3]
+    output_path = "../data/lab8/students_output.json"
+
+    # file = open("../lab4/input.txt", 'w', encoding='utf-8')
+
+    students_to_json(students_list, output_path)
+    print(f" Список студентов сохранен в: {output_path}")
+    print()
+
+    # 4. Десериализация из JSON
+    print("4. Десериализация из JSON:")
+    print("-" * 40)
+
+    input_path = "../data/lab8/students_input.json"
+    loaded_students = students_from_json(input_path)
+
+    print(f" Загружено студентов из {input_path}: {len(loaded_students)}")
+    for i, student in enumerate(loaded_students, 1):
+        print(f"  {i}. {student}")
+    print()
+
+    # 5. Демонстрация обработки ошибок
+    print("5. Демонстрация обработки ошибок:")
+    print("-" * 40)
+
+    print("Попытка создания студента с неправильным GPA (6.0):")
+    try:
+        bad_student1 = Student("Тестовый Студент", "2000-01-01", "SE-01", 6.0)
+    except ValueError as e:
+        print(f"   Ошибка: {e}")
+
+    print("Попытка создания студента с неправильным форматом даты:")
+    try:
+        bad_student2 = Student("Тестовый Студент", "2000/01/01", "SE-01", 4.0)
+    except ValueError as e:
+        print(f"   Ошибка: {e}")
+
+    print("Попытка создания студента с неправильным ФИО:")
+    try:
+        bad_student3 = Student("Студент123", "2000-01-01", "SE-01", 4.0)
+    except ValueError as e:
+        print(f"   Ошибка: {e}")
+
+    print()
+    print("=== Демонстрация завершена ===")
+
+
+if __name__ == "__main__":
+    main()
+```
+![8](images/lab8/1.png)
+![8](images/lab8/2.png)
+![8](images/lab8/3.png)
+![8](images/lab8/4.png)
