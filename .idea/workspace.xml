@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5dd41a33-0f47-4dc7-921d-ed75a3c905e7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/data/lab9/students.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lab9/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lab9/group.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lab9/tests_lab9.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="32pzL7DNcKwjIE9PsI1kLIkqRqF" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python tests.Python tests for exB.test_json_to_csv_roundtrip.executor": "Run",
+    "Python tests.Python tests in exA.py.executor": "Run",
+    "Python tests.Python tests in exB.py.executor": "Run",
+    "Python tests.Python tests in test_json_csv.py.executor": "Run",
+    "Python tests.Python tests in test_text.py.executor": "Run",
+    "Python tests.Python tests in tets_ex.py.executor": "Run",
+    "Python.01_greeting.executor": "Run",
+    "Python.02_sum_avg.executor": "Run",
+    "Python.03_discount_vat.executor": "Run",
+    "Python.04_minutes_to_hhmm.executor": "Run",
+    "Python.05_initials_and_len.executor": "Run",
+    "Python.cli_convert.executor": "Run",
+    "Python.cli_text.executor": "Run",
+    "Python.count_freq_top_n_function.executor": "Run",
+    "Python.ex01.executor": "Run",
+    "Python.ex02.executor": "Run",
+    "Python.ex03.executor": "Run",
+    "Python.ex04.executor": "Run",
+    "Python.ex05.executor": "Run",
+    "Python.ex06.executor": "Run",
+    "Python.ex07.executor": "Run",
+    "Python.ex7.executor": "Run",
+    "Python.exA.executor": "Run",
+    "Python.exB.executor": "Run",
+    "Python.group.executor": "Run",
+    "Python.lab1.executor": "Run",
+    "Python.models.executor": "Run",
+    "Python.serialize.executor": "Run",
+    "Python.tests_ex.executor": "Run",
+    "Python.tests_lab9.executor": "Run",
+    "Python.tets_ex.executor": "Run",
+    "Python.задание 6.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/ameze/Desktop/python_labs/images/lab3",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ameze\Desktop\python_labs\images\lab3" />
+      <recent name="C:\Users\ameze\Desktop\python_labs\images\lab4" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ameze\Desktop\python_labs\images\lab9" />
+      <recent name="C:\Users\ameze\Desktop\python_labs\images\lab8" />
+      <recent name="C:\Users\ameze\Desktop\python_labs\images\lab7" />
+      <recent name="C:\Users\ameze\Desktop\python_labs\images\lab6" />
+      <recent name="C:\Users\ameze\Desktop\python_labs\images\lab5" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="jjjkkbk9dgkck9gl0cf " />
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="Python tests for exB.test_json_to_csv_roundtrip" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="python_labs" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/lab7" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;exB.test_json_to_csv_roundtrip&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python tests.Python tests for exB.test_json_to_csv_roundtrip" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-50da183f06c8-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.13135.95" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5dd41a33-0f47-4dc7-921d-ed75a3c905e7" name="Changes" comment="" />
+      <created>1758132242970</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1758132242970</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.csv" />
+  </component>
+</project>
