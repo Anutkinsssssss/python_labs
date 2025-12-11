@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5dd41a33-0f47-4dc7-921d-ed75a3c905e7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/data/lab9/students.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lab9/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lab9/group.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lab9/tests_lab9.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/lab10/lab10_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lab10/linked_list.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lab10/structures.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lab10/tests_lab10.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,9 +69,12 @@
     "Python.exB.executor": "Run",
     "Python.group.executor": "Run",
     "Python.lab1.executor": "Run",
+    "Python.linked_list.executor": "Run",
     "Python.models.executor": "Run",
     "Python.serialize.executor": "Run",
+    "Python.structures.executor": "Run",
     "Python.tests_ex.executor": "Run",
+    "Python.tests_lab10.executor": "Run",
     "Python.tests_lab9.executor": "Run",
     "Python.tets_ex.executor": "Run",
     "Python.задание 6.executor": "Run",
@@ -86,11 +91,11 @@
       <recent name="C:\Users\ameze\Desktop\python_labs\images\lab4" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ameze\Desktop\python_labs\images\lab10" />
       <recent name="C:\Users\ameze\Desktop\python_labs\images\lab9" />
       <recent name="C:\Users\ameze\Desktop\python_labs\images\lab8" />
       <recent name="C:\Users\ameze\Desktop\python_labs\images\lab7" />
       <recent name="C:\Users\ameze\Desktop\python_labs\images\lab6" />
-      <recent name="C:\Users\ameze\Desktop\python_labs\images\lab5" />
     </key>
   </component>
   <component name="RunAnythingCache">
